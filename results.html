@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Results - Coach L Academy</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Segoe UI',sans-serif; background:#07070c; color:#fff; min-height:100vh; -webkit-overflow-scrolling:touch; }
+body.light-mode { background:#ffffff; color:#222; }
+.header { background:linear-gradient(135deg,#667eea,#764ba2); padding:16px 20px; display:flex; align-items:center; gap:12px; position:sticky; top:0; z-index:100; }
+.back-link { color:#fff; font-size:1.4rem; text-decoration:none; }
+.header h1 { font-size:1rem; font-weight:700; color:#fff; }
+.content { padding:20px; max-width:700px; margin:0 auto; padding-bottom:60px; }
+.summary { background:linear-gradient(135deg,#667eea,#764ba2); border-radius:14px; padding:20px; margin-bottom:20px; text-align:center; }
+.summary h2 { font-size:1.3rem; margin-bottom:6px; }
+.summary p { opacity:0.85; font-size:0.9rem; }
+.empty { text-align:center; padding:60px 20px; }
+.empty h2 { font-size:1.2rem; margin-bottom:10px; color:#a78bfa; }
+.empty p { font-size:0.9rem; color:#999; }
+.result-card { padding:16px; border-radius:12px; margin-bottom:14px; border-left:4px solid #4caf50; background:rgba(255,255,255,0.05); }
+body.light-mode .result-card { background:#f8f9fa; }
+.result-card.failed { border-left-color:#f44336; }
+.result-card h3 { font-size:1rem; margin-bottom:8px; color:#4caf50; }
+.result-card.failed h3 { color:#f44336; }
+.result-card p { font-size:0.85rem; color:#ccc; margin-bottom:4px; }
+body.light-mode .result-card p { color:#555; }
+.result-card p strong { color:#fff; }
+body.light-mode .result-card p strong { color:#222; }
+.timestamp { font-size:0.75rem; color:#666; margin-top:6px; }
+.clear-btn { display:block; width:100%; padding:14px; background:#f44336; color:#fff; border:none; border-radius:12px; font-size:1rem; font-weight:700; cursor:pointer; margin-top:20px; font-family:inherit; }
+.filter-row { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:16px; }
+.filter-btn { padding:6px 14px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.15); border-radius:20px; color:#aaa; font-size:0.8rem; cursor:pointer; font-family:inherit; }
+body.light-mode .filter-btn { background:#f0f0f0; border-color:#e0e0e0; color:#666; }
+.filter-btn.active { background:linear-gradient(135deg,#667eea,#764ba2); border-color:transparent; color:#fff; }
+</style>
+</head>
+<body id="body">
+<script>
+if(localStorage.getItem('cl_theme')==='light') document.getElementById('body').classList.add('light-mode');
+</script>
+
+<div class="header">
+  <a href="https://coachl-academy.github.io/Inspire-Teach-Heal/index2.html" class="back-link">←</a>
+  <h1>📊 My Assessment Results</h1>
+</div>
+
+<div class="content" id="content">
+  <div class="empty"><h2>Loading...</h2></div>
+</div>
+
+<script>
+var all = JSON.parse(localStorage.getItem('assessmentResults') || '[]');
+var content = document.getElementById('content');
+
+if (!all.length) {
+  content.innerHTML = '<div class="empty"><h2>No Results Yet</h2><p>Complete an assessment in any course to see your results here.</p></div>';
+} else {
+  var passed = all.filter(function(r){ return r.passed === 'YES'; }).length;
+
+  // Get unique courses
+  var courses = [];
+  all.forEach(function(r) {
+    var cn = r.courseName || 'Unknown Course';
+    if (courses.indexOf(cn) === -1) courses.push(cn);
+  });
+
+  var html = '<div class="summary">';
+  html += '<h2>📋 ' + all.length + ' Submission' + (all.length !== 1 ? 's' : '') + '</h2>';
+  html += '<p>✅ ' + passed + ' passed &nbsp;|&nbsp; ❌ ' + (all.length - passed) + ' failed</p>';
+  html += '<p style="font-size:0.8rem;margin-top:6px;opacity:0.8;">' + courses.length + ' course' + (courses.length !== 1 ? 's' : '') + '</p>';
+  html += '</div>';
+
+  // Filter buttons
+  html += '<div class="filter-row"><button class="filter-btn active" onclick="filterResults(\'all\', this)">All</button>';
+  courses.forEach(function(c) {
+    var short = c.split(' ').slice(0,3).join(' ');
+    html += '<button class="filter-btn" onclick="filterResults(\'' + c.replace(/'/g, "\\'") + '\', this)">' + short + '</button>';
+  });
+  html += '</div>';
+
+  html += '<div id="resultsList">';
+  all.forEach(function(r, i) {
+    var isPassed = r.passed === 'YES';
+    html += '<div class="result-card' + (isPassed ? '' : ' failed') + '" data-course="' + (r.courseName || '') + '">';
+    html += '<h3>' + (isPassed ? '✅ PASSED' : '❌ FAILED') + ' — Submission #' + (i+1) + '</h3>';
+    html += '<p><strong>Course:</strong> ' + (r.courseName || 'Unknown') + '</p>';
+    html += '<p><strong>Week:</strong> ' + r.week + ' &nbsp;|&nbsp; <strong>Score:</strong> ' + r.score + '% (' + r.correct + '/' + r.total + ')</p>';
+    html += '<p><strong>Student:</strong> ' + r.studentName + '</p>';
+    html += '<p class="timestamp">' + r.timestamp + '</p>';
+    html += '</div>';
+  });
+  html += '</div>';
+
+  html += '<button class="clear-btn" onclick="clearResults()">🗑 Clear All Results</button>';
+  content.innerHTML = html;
+}
+
+function filterResults(course, btn) {
+  document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
+  btn.classList.add('active');
+  document.querySelectorAll('.result-card').forEach(function(card) {
+    if (course === 'all' || card.getAttribute('data-course') === course) {
+      card.style.display = 'block';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+
+function clearResults() {
+  if (confirm('Clear all results? This cannot be undone.')) {
+    localStorage.removeItem('assessmentResults');
+    location.reload();
+  }
+}
+</script>
+</body>
+</html>
