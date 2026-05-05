@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1566975054213856"
+       crossorigin="anonymous"></script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Contact Us - Coach L Academy</title>
+  <link rel="icon" href="favicon.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Contact Us - Coach L Academy" />
+  <meta property="og:description" content="Get in touch with Coach L Academy." />
+  <meta property="og:image" content="https://coachl-academy.github.io/favicon.png" />
+  <meta property="og:url" content="https://coachl-academy.github.io/contact-us.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Coach L Academy" />
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+
+    body { background: #0f0f1a; color: #fff; overflow-x: hidden; line-height: 1.7; }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* Page Header */
+    .page-header {
+      background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 100%);
+      padding: 60px 20px 50px;
+      text-align: center;
+      border-bottom: 3px solid #ff4b2b;
+    }
+
+    .page-header h1 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .page-header h1 span { color: #ff4b2b; }
+
+    .page-header p { color: #aaa; font-size: 0.95rem; }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 20px;
+      color: #ff4b2b;
+      font-size: 0.9rem;
+      transition: opacity 0.3s;
+    }
+
+    .back-link:hover { opacity: 0.7; }
+
+    /* Content */
+    .content {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+
+    .intro-text {
+      text-align: center;
+      color: #ccc;
+      font-size: 1rem;
+      margin-bottom: 48px;
+    }
+
+    /* Contact Cards */
+    .contact-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-bottom: 52px;
+    }
+
+    .contact-card {
+      background: #1a1a2e;
+      border: 1px solid #2a2a3e;
+      border-radius: 14px;
+      padding: 28px 20px;
+      text-align: center;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+
+    .contact-card:hover {
+      border-color: #ff4b2b;
+      transform: translateY(-3px);
+    }
+
+    .contact-card .icon {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    .contact-card h3 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #aaa;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .contact-card p, .contact-card a {
+      font-size: 0.95rem;
+      color: #4e90d4;
+    }
+
+    .contact-card a:hover { color: #ff4b2b; }
+
+    /* Form */
+    .form-section h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 24px;
+      text-align: center;
+      position: relative;
+      display: inline-block;
+      width: 100%;
+    }
+
+    .form-section h2::after {
+      content: '';
+      display: block;
+      width: 50px;
+      height: 3px;
+      background: #ff4b2b;
+      margin: 8px auto 0;
+      border-radius: 2px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.88rem;
+      color: #aaa;
+      margin-bottom: 7px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      background: #1a1a2e;
+      border: 1px solid #2a2a3e;
+      border-radius: 10px;
+      padding: 13px 16px;
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.95rem;
+      transition: border-color 0.3s;
+      outline: none;
+      -webkit-appearance: none;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: #ff4b2b;
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 130px;
+    }
+
+    .form-group select option {
+      background: #1a1a2e;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 15px;
+      background: #ff4b2b;
+      color: #fff;
+      border: none;
+      border-radius: 50px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      letter-spacing: 1px;
+      transition: background 0.3s, transform 0.2s;
+      margin-top: 8px;
+    }
+
+    .submit-btn:hover {
+      background: #e03b1e;
+      transform: translateY(-2px);
+    }
+
+    .form-note {
+      text-align: center;
+      font-size: 0.8rem;
+      color: #555;
+      margin-top: 14px;
+    }
+
+    .email-card {
+      background: #1a1a2e;
+      border: 1px solid #2a2a3e;
+      border-radius: 16px;
+      padding: 36px 28px;
+      text-align: center;
+      transition: border-color 0.3s, transform 0.3s;
+      margin-top: 8px;
+    }
+
+    .email-card:hover {
+      border-color: #ff4b2b;
+      transform: translateY(-3px);
+    }
+
+    .email-card .icon { font-size: 2.8rem; margin-bottom: 14px; }
+
+    .email-card h3 {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #aaa;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+    }
+
+    .email-card a {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #4e90d4;
+      transition: color 0.3s;
+    }
+
+    .email-card a:hover { color: #ff4b2b; }
+
+    .email-card p {
+      font-size: 0.82rem;
+      color: #555;
+      margin-top: 10px;
+    }
+
+    /* Footer */
+    footer {
+      padding: 40px 20px;
+      text-align: center;
+      background: #111;
+      color: #aaa;
+    }
+
+    .sub-footer {
+      background: #0a0a14;
+      padding: 20px 20px 30px;
+      text-align: center;
+      border-top: 1px solid #1e1e2e;
+    }
+
+    .sub-footer p {
+      font-size: 0.8rem;
+      color: #666;
+      margin-bottom: 12px;
+    }
+
+    .sub-footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .sub-footer-links a {
+      font-size: 0.9rem;
+      color: #4e90d4;
+      transition: color 0.3s;
+    }
+
+    .sub-footer-links a:hover { color: #ff4b2b; }
+
+    @media (max-width: 600px) {
+      .page-header h1 { font-size: 2rem; }
+      .content { padding: 40px 18px; }
+      .contact-cards { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page-header">
+    <h1>Get in <span>Touch</span></h1>
+    <p>We'd love to hear from you</p>
+    <a href="index.html" class="back-link">← Back to Home</a>
+  </div>
+
+  <div class="content">
+
+    <p class="intro-text">Have a question about a course, a partnership idea, or just want to say hello? Reach out — we'll get back to you as soon as possible.</p>
+
+    <div class="contact-cards">
+      <div class="contact-card">
+        <div class="icon">🌐</div>
+        <h3>Website</h3>
+        <a href="https://coachl-academy.github.io">coachl-academy.github.io</a>
+      </div>
+      <div class="contact-card">
+        <div class="icon">📍</div>
+        <h3>Location</h3>
+        <p>South Africa</p>
+      </div>
+    </div>
+
+    <div class="email-card">
+      <div class="icon">✉️</div>
+      <h3>Email Us</h3>
+      <a href="mailto:coachlacademy2@gmail.com">coachlacademy2@gmail.com</a>
+      <p>We typically respond within 1–2 business days.</p>
+    </div>
+
+  </div>
+
+  <footer>
+    &copy; 2026 Coach L Academy. All Rights Reserved.
+  </footer>
+
+  <div class="sub-footer">
+    <p>&copy; 2025 Coach L Academy</p>
+    <div class="sub-footer-links">
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="terms-of-use.html">Terms of Use</a>
+      <a href="contact-us.html">Contact Us</a>
+      <a href="all-courses.html">All Courses</a>
+    </div>
+  </div>
+
+
+
+</body>
+</html>
